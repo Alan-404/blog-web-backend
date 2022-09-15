@@ -1,0 +1,49 @@
+POST http://localhost:8080/user/add
+Content-Type: application/json
+
+{
+    "firstName": "nguyen",
+    "lastName": "tri",
+    "email": "nguyentri155.alan@gmail.com",
+    "password": "123",
+    "role": true
+}
+
+
+###
+POST http://localhost:8080/account/add
+Content-Type: application/json
+
+{
+    "password": "1231",
+    "role": true
+}
+
+###
+GET http://localhost:8080/account/all
+Content-Type: application/json
+
+###
+POST http://localhost:8000/account/login
+Content-Type: application/json
+
+{
+    "email": "nguyentri.alan@gmail.com",
+    "password": "456"
+}
+
+###
+PUT http://localhost:8000/account/password/change
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MzIxNzc3MWYwNmE1OTIxMWJkZGUxNTciLCJleHAiOjE2NjMyNjU4NjAsImlhdCI6MTY2MzIyOTg2MH0.z1lxCcjboxXpiy3-ddHVPpwVr-AkbZkIqi7lBumWdF0
+
+{
+    "oldPassword": "123",
+    "newPassword": "456"
+}
+
+
+###
+GET http://localhost:8000/user/info
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MzIxNzc3MWYwNmE1OTIxMWJkZGUxNTciLCJleHAiOjE2NjMyNjQ2MjEsImlhdCI6MTY2MzIyODYyMX0._6K__IHoO9-Ok47djM0KGllcP0g8A6iq6ET7Ny0V3Y4
