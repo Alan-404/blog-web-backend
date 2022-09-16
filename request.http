@@ -35,11 +35,11 @@ Content-Type: application/json
 ###
 PUT http://localhost:8080/account/password/change
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MzIxNzc3MWYwNmE1OTIxMWJkZGUxNTciLCJleHAiOjE2NjMyNjU4NjAsImlhdCI6MTY2MzIyOTg2MH0.z1lxCcjboxXpiy3-ddHVPpwVr-AkbZkIqi7lBumWdF0
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MzIxNzc3MWYwNmE1OTIxMWJkZGUxNTciLCJpYXQiOjE2NjMzMzQ0MzN9.wqz-T2f988HXdN-ZdoT8pjzlw5h-4eL9gkaxuceILZY
 
 {
-    "oldPassword": "123",
-    "newPassword": "456"
+    "oldPassword": "456",
+    "newPassword": "123"
 }
 
 ###
@@ -84,3 +84,20 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MzIxNzc3MWYwNmE1OTIxMWJkZ
     "id": "632429a506ec351e1b9e4dad",
     "state": "DELETED"
 }
+
+
+###
+POST http://localhost:8080/comment/add
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MzIxNzc3MWYwNmE1OTIxMWJkZGUxNTciLCJpYXQiOjE2NjMzMzQ0MzN9.wqz-T2f988HXdN-ZdoT8pjzlw5h-4eL9gkaxuceILZY
+
+{
+    "blogId": "6324295306ec351e1b9e4dab",
+    "content": "test cmt 1"
+}
+
+
+###
+GET http://localhost:8080/blog/show/6324295306ec351e1b9e4dab
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MzIxNzc3MWYwNmE1OTIxMWJkZGUxNTciLCJpYXQiOjE2NjMzMzQ0MzN9.wqz-T2f988HXdN-ZdoT8pjzlw5h-4eL9gkaxuceILZY
