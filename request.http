@@ -1,4 +1,4 @@
-POST http://localhost:8000/user/add
+POST http://localhost:8080/user/add
 Content-Type: application/json
 
 {
@@ -24,7 +24,7 @@ GET http://localhost:8080/account/all
 Content-Type: application/json
 
 ###
-POST http://localhost:8000/account/login
+POST http://localhost:8080/account/login
 Content-Type: application/json
 
 {
@@ -33,7 +33,7 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:8000/account/password/change
+PUT http://localhost:8080/account/password/change
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MzIxNzc3MWYwNmE1OTIxMWJkZGUxNTciLCJleHAiOjE2NjMyNjU4NjAsImlhdCI6MTY2MzIyOTg2MH0.z1lxCcjboxXpiy3-ddHVPpwVr-AkbZkIqi7lBumWdF0
 
@@ -43,17 +43,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MzIxNzc3MWYwNmE1OTIxMWJkZ
 }
 
 ###
-GET http://localhost:8000/user/information/63217771f06a59211bdde157
+GET http://localhost:8080/user/information/63217771f06a59211bdde157
 Content-Type: application/json
 
 ###
-GET http://localhost:8000/user/info
+GET http://localhost:8080/user/info
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MzIxNzc3MWYwNmE1OTIxMWJkZGUxNTciLCJleHAiOjE2NjMzNDc1MTcsImlhdCI6MTY2MzMxMTUxN30.gpZNx4Dahode04HkIQQllflVQfmLgb2n0UwkgfDClxI
 
 
 ###
-POST http://localhost:8000/category/add
+POST http://localhost:8080/category/add
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MzIxNzc3MWYwNmE1OTIxMWJkZGUxNTciLCJleHAiOjE2NjMzNDA1MTAsImlhdCI6MTY2MzMwNDUxMH0.5HtPlf4aD0UaKS8iFsJF3OlVSBan2toSSM-vPCSKedU
 
@@ -63,7 +63,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MzIxNzc3MWYwNmE1OTIxMWJkZ
 
 
 ###
-POST http://localhost:8000/blog/add
+POST http://localhost:8080/blog/add
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MzI0Mjk3ZDA2ZWMzNTFlMWI5ZTRkYWMiLCJleHAiOjE2NjMzNTAzMTUsImlhdCI6MTY2MzMxNDMxNX0.GHuDhQF_8rXNNQX1NP0l_tsDmpmU1FS_EVNhSfPorO4
 
@@ -76,7 +76,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MzI0Mjk3ZDA2ZWMzNTFlMWI5Z
 }
 
 ###
-PUT http://localhost:8000/blog/handle
+PUT http://localhost:8080/blog/handle
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MzIxNzc3MWYwNmE1OTIxMWJkZGUxNTciLCJleHAiOjE2NjMzNTExNzcsImlhdCI6MTY2MzMxNTE3N30.kJT7NrL9RYGo5QKsS8Bvl8P0MsgLUk6Vey5EXAJDhEk
 
