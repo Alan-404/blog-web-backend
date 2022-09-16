@@ -1,12 +1,12 @@
-POST http://localhost:8080/user/add
+POST http://localhost:8000/user/add
 Content-Type: application/json
 
 {
     "firstName": "nguyen",
     "lastName": "tri",
-    "email": "nguyentri155.alan@gmail.com",
+    "email": "nguyentri00.alan@gmail.com",
     "password": "123",
-    "role": true
+    "role": false
 }
 
 
@@ -49,7 +49,7 @@ Content-Type: application/json
 ###
 GET http://localhost:8000/user/info
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MzIxNzc3MWYwNmE1OTIxMWJkZGUxNTciLCJleHAiOjE2NjMyNjQ2MjEsImlhdCI6MTY2MzIyODYyMX0._6K__IHoO9-Ok47djM0KGllcP0g8A6iq6ET7Ny0V3Y4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MzIxNzc3MWYwNmE1OTIxMWJkZGUxNTciLCJleHAiOjE2NjMzNDc1MTcsImlhdCI6MTY2MzMxMTUxN30.gpZNx4Dahode04HkIQQllflVQfmLgb2n0UwkgfDClxI
 
 
 ###
@@ -59,4 +59,28 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MzIxNzc3MWYwNmE1OTIxMWJkZ
 
 {
     "name": "AI"
+}
+
+
+###
+POST http://localhost:8000/blog/add
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MzI0Mjk3ZDA2ZWMzNTFlMWI5ZTRkYWMiLCJleHAiOjE2NjMzNTAzMTUsImlhdCI6MTY2MzMxNDMxNX0.GHuDhQF_8rXNNQX1NP0l_tsDmpmU1FS_EVNhSfPorO4
+
+{
+    "categoryId": "63240370dbdf3d219fe016b9",
+    "userId": "63217771f06a59211bdde157",
+    "title": "Test blog role user",
+    "intro": "intro role user",
+    "content": "test ai blog role user"
+}
+
+###
+PUT http://localhost:8000/blog/handle
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MzIxNzc3MWYwNmE1OTIxMWJkZGUxNTciLCJleHAiOjE2NjMzNTExNzcsImlhdCI6MTY2MzMxNTE3N30.kJT7NrL9RYGo5QKsS8Bvl8P0MsgLUk6Vey5EXAJDhEk
+
+{
+    "id": "632429a506ec351e1b9e4dad",
+    "state": "DELETED"
 }

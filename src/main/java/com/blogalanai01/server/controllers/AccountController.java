@@ -95,4 +95,26 @@ public class AccountController {
         return this.accountService.changePassword(account, oldPassword, newPassword);
     }
 
+
+    @GetMapping("/role")
+    public boolean getRole(HttpServletRequest httpServletRequest){
+        String authorizationHeader = httpServletRequest.getHeader("Authorization");
+        if (authorizationHeader == null){
+            return false;
+        }
+        String token = authorizationHeader.split(" ")[1];
+        if (token == null){
+            return false;
+        }
+
+        String accountId = this.jwt.extractAccountId(token);
+        if (accountId == null){
+            return false;
+        }
+
+        boolean role = this.accountService.getRoleAccount(accountId);
+
+        return role;
+    }
+
 }

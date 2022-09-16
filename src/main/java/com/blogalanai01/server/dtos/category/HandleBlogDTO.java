@@ -1,7 +1,4 @@
-package com.blogalanai01.server.models;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+package com.blogalanai01.server.dtos.category;
 
 import com.blogalanai01.server.enums.BlogState;
 
@@ -15,15 +12,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "blog")
-public class Blog {
-    @Id
+public class HandleBlogDTO {
     private String id;
-    private String categoryId;
-    private String userId;
-    private String title;
-    private String intro;
-    private String content;
     private BlogState state;
 
     public void setBlogState(BlogState state){
@@ -34,3 +24,5 @@ public class Blog {
         return this.state;
     }
 }
+
+
