@@ -46,28 +46,37 @@ public class AccountController {
 
     @PostMapping("/login")
     public ResponseLoginDTO loginAccount(@RequestBody LoginDTO loginData){
-        ResponseLoginDTO response = new ResponseLoginDTO(false, null);
-        String email = loginData.getEmail();
-        String password = loginData.getPassword();
-        User checkUser = this.userService.findUserByEmail(email);
+        try{
 
-        if (checkUser == null){
-            response.setAllAttrs(false, null);
+            
+            String email = loginData.getEmail();
+            String password = loginData.getPassword();
+            User checkUser = this.userService.findUserByEmail(email);
+            ResponseLoginDTO response = new ResponseLoginDTO(false, null);
+            
+            if (checkUser == null){
+                response.setAllAttrs(false, null);
+                return response;
+            }
+
+            Account account = this.accountService.login(checkUser.getId(), password);
+    
+            if (account == null){
+                response.setAllAttrs(false, null);
+                return response;
+            }
+
+    
+            String accessToken = this.jwt.generateToken(account.getId());
+    
+            response.setAllAttrs(true, accessToken);
+    
             return response;
         }
-
-        Account account = this.accountService.login(checkUser.getId(), password);
-
-        if (account == null){
-            response.setAllAttrs(false, null);
-            return response;
+        catch(Error err){
+            System.out.println(err.getMessage());
+            return null;
         }
-
-        String accessToken = this.jwt.generateToken(account.getId());
-
-        response.setAllAttrs(true, accessToken);
-
-        return response;
     }
 
 

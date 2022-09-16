@@ -4,7 +4,7 @@ Content-Type: application/json
 {
     "firstName": "nguyen",
     "lastName": "tri",
-    "email": "nguyentri00.alan@gmail.com",
+    "email": "nguyentri333.alan@gmail.com",
     "password": "123",
     "role": false
 }
@@ -28,8 +28,8 @@ POST http://localhost:8080/account/login
 Content-Type: application/json
 
 {
-    "email": "nguyentri.alan@gmail.com",
-    "password": "456"
+    "email": "nguyentri333.alan@gmail.com",
+    "password": "123"
 }
 
 ###
