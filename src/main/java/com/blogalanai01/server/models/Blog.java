@@ -17,9 +17,9 @@ import lombok.Setter;
 public class Blog {
     @Id
     private String id;
+    private String categoryId;
+    private String userId;
     private String title;
     private String intro;
     private String content;
-    private String createdAt;
-    private String modifiedAt;
 }

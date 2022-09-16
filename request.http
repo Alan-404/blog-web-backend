@@ -42,8 +42,21 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MzIxNzc3MWYwNmE1OTIxMWJkZ
     "newPassword": "456"
 }
 
+###
+GET http://localhost:8000/user/information/63217771f06a59211bdde157
+Content-Type: application/json
 
 ###
 GET http://localhost:8000/user/info
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MzIxNzc3MWYwNmE1OTIxMWJkZGUxNTciLCJleHAiOjE2NjMyNjQ2MjEsImlhdCI6MTY2MzIyODYyMX0._6K__IHoO9-Ok47djM0KGllcP0g8A6iq6ET7Ny0V3Y4
+
+
+###
+POST http://localhost:8000/category/add
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MzIxNzc3MWYwNmE1OTIxMWJkZGUxNTciLCJleHAiOjE2NjMzNDA1MTAsImlhdCI6MTY2MzMwNDUxMH0.5HtPlf4aD0UaKS8iFsJF3OlVSBan2toSSM-vPCSKedU
+
+{
+    "name": "AI"
+}

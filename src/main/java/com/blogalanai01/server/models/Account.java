@@ -21,4 +21,13 @@ public class Account {
     private String password;
     private String userId;
     private boolean role;
+
+
+    public boolean getRole(){
+        return this.role;
+    }
+
+    public void setRole(boolean role){
+        this.role = role;
+    }
 }

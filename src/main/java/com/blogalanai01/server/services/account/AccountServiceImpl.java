@@ -84,4 +84,10 @@ public class AccountServiceImpl implements AccountService {
         return true;
     }
 
+    @Override
+    public boolean getRoleAccount(String accountId){
+        Account account = this.accountRepository.getAccountById(accountId);
+        return account.getRole();
+    }
+
 }

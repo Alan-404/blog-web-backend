@@ -12,4 +12,5 @@ public interface AccountService {
     public Account getAccountByUserId(String userId);
     public Account getAccountById(String id);
     public boolean changePassword(Account account, String oldPassword, String newPassword);
+    public boolean getRoleAccount(String accountId);
 }

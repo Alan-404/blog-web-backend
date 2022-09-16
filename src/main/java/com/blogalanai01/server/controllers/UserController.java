@@ -4,6 +4,7 @@ package com.blogalanai01.server.controllers;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -72,6 +73,13 @@ public class UserController {
         catch(Error err){
             return null;
         }
+    }
+
+    @GetMapping("/information/{id}")
+    public User getUserById(@PathVariable("id") String userId){
+        User user = this.userService.getUserById(userId);
+
+        return user;
     }
 
 }
