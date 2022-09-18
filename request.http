@@ -49,7 +49,7 @@ Content-Type: application/json
 ###
 GET http://localhost:8080/user/info
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MzIxNzc3MWYwNmE1OTIxMWJkZGUxNTciLCJleHAiOjE2NjMzNDc1MTcsImlhdCI6MTY2MzMxMTUxN30.gpZNx4Dahode04HkIQQllflVQfmLgb2n0UwkgfDClxI
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MzI0OGQxMzY5MjNhNzNiYTg0OWYzNTciLCJpYXQiOjE2NjMzODIxNDV9.GFX_wuDBdrV32ZzPv9wrCD-EAJCzk9Rdu9RvjVGW7Sk
 
 
 ###

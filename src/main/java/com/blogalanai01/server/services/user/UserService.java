@@ -7,4 +7,5 @@ public interface UserService {
     public User addUser(RegisterDTO  user);
     public User findUserByEmail(String email);
     public User getUserById(String id);
+    public User editUser(User user);
 }

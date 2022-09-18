@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -80,6 +81,40 @@ public class UserController {
         User user = this.userService.getUserById(userId);
 
         return user;
+    }
+
+
+    @PutMapping("/edit")
+    public User editInfoUser(@RequestBody User user, HttpServletRequest httpServletRequest){
+        String authorizationHeader = httpServletRequest.getHeader("Authorization");
+        if (authorizationHeader == null || authorizationHeader.startsWith("Bearer") == false){
+            return null;
+        }
+        String token = authorizationHeader.split(" ")[1];
+        if (token == null){
+            return null;
+        }
+        String accountId = this.jwt.extractAccountId(token);
+
+        if (accountId == null){
+            return null;
+        }
+
+        Account account = this.accountService.getAccountById(accountId);
+        if (account == null){
+            return null;
+        }
+
+        user.setId(account.getUserId());
+
+        User checkUser = this.userService.getUserById(account.getUserId());
+        if (checkUser == null){
+            return null;
+        }
+
+        user.setEmail(checkUser.getEmail());
+
+        return this.userService.editUser(user);
     }
 
 }
