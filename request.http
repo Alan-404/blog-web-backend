@@ -28,8 +28,8 @@ POST http://localhost:8080/account/login
 Content-Type: application/json
 
 {
-    "email": "nguyentri333.alan@gmail.com",
-    "password": "123"
+    "email": "nguyentri.alan@gmail.com",
+    "password": "1234"
 }
 
 ###
@@ -101,3 +101,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MzIxNzc3MWYwNmE1OTIxMWJkZ
 GET http://localhost:8080/blog/show/6324295306ec351e1b9e4dab
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MzIxNzc3MWYwNmE1OTIxMWJkZGUxNTciLCJpYXQiOjE2NjMzMzQ0MzN9.wqz-T2f988HXdN-ZdoT8pjzlw5h-4eL9gkaxuceILZY
+
+###
+POST http://localhost:8080/hadoop/api
+Content-Type: application/json
+
+{
+    "clusterName": "blog/users"
+}
+

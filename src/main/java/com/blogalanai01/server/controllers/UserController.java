@@ -3,12 +3,16 @@ package com.blogalanai01.server.controllers;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.blogalanai01.server.dtos.user.RegisterDTO;
@@ -17,6 +21,7 @@ import com.blogalanai01.server.middleware.Jwt;
 import com.blogalanai01.server.models.Account;
 import com.blogalanai01.server.models.User;
 import com.blogalanai01.server.services.account.AccountService;
+import com.blogalanai01.server.services.hadoop.HadoopService;
 import com.blogalanai01.server.services.user.UserService;
 
 
@@ -27,22 +32,29 @@ public class UserController {
     private final UserService userService;
     private final AccountService accountService;
     private final Jwt jwt;
+    private final HadoopService hadoopService;
     
     
-    public UserController(UserService userService, AccountService accountService, Jwt jwt){
+    public UserController(UserService userService, AccountService accountService, Jwt jwt, HadoopService hadoopService){
         this.userService = userService;
         this.accountService = accountService;
         this.jwt = jwt;
+        this.hadoopService = hadoopService;
     }
 
 
     @PostMapping("/add")
-    public ResponseAddUserDTO addUser(@RequestBody RegisterDTO registerData){
+    public ResponseAddUserDTO addUser(@ModelAttribute RegisterDTO registerData){
         ResponseAddUserDTO response = new ResponseAddUserDTO(false, null, "Fail to Register User");
         System.out.println(registerData.getAvatar());
         User user = this.userService.addUser(registerData);
         if (user == null){
             response.setMessage("Existed Email");
+            return response;
+        }
+        boolean addedImage = this.hadoopService.saveImage(registerData.getAvatar(), user.getId());
+        if(addedImage == false){
+            response.setMessage("Interanl Error Server");
             return response;
         }
         registerData.setUserId(user.getId());
@@ -117,4 +129,9 @@ public class UserController {
         return this.userService.editUser(user);
     }
 
+
+    @GetMapping("/avatar")
+    public ResponseEntity<byte[]> getAvatarUser(@RequestParam String id){
+        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(this.hadoopService.getAvatarUser(id));
+    }
 }
