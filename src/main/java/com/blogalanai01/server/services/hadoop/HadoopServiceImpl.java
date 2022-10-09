@@ -58,13 +58,13 @@ public class HadoopServiceImpl implements HadoopService {
     }
 
     @Override
-    public boolean saveImage(MultipartFile file, String id){
+    public boolean saveImage(MultipartFile file, String id, String clusterName){
         try{
             Configuration config = new Configuration();
             config.set(Consts.defaultFS, Consts.hdfsSite);
             FileSystem fs = FileSystem.get(config);
 
-            Path hdfsPath = new Path(Consts.pathPrefix + Consts.userPathPrefix + "/" + id + ".jpg");
+            Path hdfsPath = new Path(Consts.pathPrefix + clusterName + "/" + id + ".jpg");
 
             FSDataOutputStream outputStream = fs.create(hdfsPath);
 
@@ -82,20 +82,18 @@ public class HadoopServiceImpl implements HadoopService {
     }
 
     @Override
-    public byte[] getAvatarUser(String id){
+    public byte[] getImage(String id, String clusterName){
         try{
             Configuration config = new Configuration();
             config.set(Consts.defaultFS, Consts.hdfsSite);
             FileSystem fs = FileSystem.get(config);
 
-            Path hdfsPath = new Path(Consts.pathPrefix + Consts.userPathPrefix + "/" + id + ".jpg");
+            Path hdfsPath = new Path(Consts.pathPrefix  + clusterName + "/" + id + ".jpg");
 
 
             FSDataInputStream inputStream = fs.open(hdfsPath);
 
             byte[] arrImage = IOUtils.readFullyToByteArray(inputStream);
-
-            fs.close();
 
 
             return arrImage;

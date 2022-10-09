@@ -16,6 +16,7 @@ import com.blogalanai01.server.dtos.blog.ShowBlogDTO;
 import com.blogalanai01.server.dtos.category.HandleBlogDTO;
 import com.blogalanai01.server.enums.BlogState;
 import com.blogalanai01.server.middleware.Jwt;
+import com.blogalanai01.server.models.Account;
 import com.blogalanai01.server.models.Blog;
 import com.blogalanai01.server.models.Comment;
 import com.blogalanai01.server.services.account.AccountService;
@@ -54,14 +55,16 @@ public class BlogController {
         if (accountId == null){
             return null;
         }
-
-        boolean role = this.accountService.getRoleAccount(accountId);
-        if (role == true){
+        Account account = this.accountService.getAccountById(accountId);
+        if (account.getRole() == true){
             blog.setBlogState(BlogState.ACTIVE);
         }
         else{
             blog.setBlogState(BlogState.PENDING);
         }
+
+        blog.setUserId(account.getUserId());
+
 
         return this.blogService.addBlog(blog);
     }

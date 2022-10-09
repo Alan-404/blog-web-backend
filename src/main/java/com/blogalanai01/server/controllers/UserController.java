@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.blogalanai01.server.dtos.user.RegisterDTO;
 import com.blogalanai01.server.dtos.user.ResponseAddUserDTO;
+import com.blogalanai01.server.dtos.user.ResponseGetUserDTO;
 import com.blogalanai01.server.middleware.Jwt;
 import com.blogalanai01.server.models.Account;
 import com.blogalanai01.server.models.User;
@@ -52,7 +53,7 @@ public class UserController {
             response.setMessage("Existed Email");
             return response;
         }
-        boolean addedImage = this.hadoopService.saveImage(registerData.getAvatar(), user.getId());
+        boolean addedImage = this.hadoopService.saveImage(registerData.getAvatar(), user.getId(), "users");
         if(addedImage == false){
             response.setMessage("Interanl Error Server");
             return response;
@@ -65,27 +66,37 @@ public class UserController {
 
 
     @GetMapping("/info")
-    public User getUserByToken(HttpServletRequest httpServletRequest){
+    public ResponseGetUserDTO getUserByToken(HttpServletRequest httpServletRequest){
+        ResponseGetUserDTO response = new ResponseGetUserDTO(false, null, false);
         try{
             String authorizationHeader = httpServletRequest.getHeader("Authorization");
+            if (authorizationHeader.startsWith("Bearer") == false && authorizationHeader.split(" ").length != 2){
+                return response;
+            }
             String token = authorizationHeader.split(" ")[1];
             if (token == null){
-                return null;
+                return response;
             }
             String accountId = this.jwt.extractAccountId(token);
             if (accountId == null){
-                return null;
+                return response;
             }
             Account account = this.accountService.getAccountById(accountId);
             if (account == null){
-                return null;
+                return response;
             }
             User user = this.userService.getUserById(account.getUserId());
-            return user;
+            
+
+            response.setSuccess(true);
+            response.setUser(user);
+            response.setRole(account.getRole());
         }
         catch(Error err){
-            return null;
+            err.printStackTrace();
         }
+
+        return response;
     }
 
     @GetMapping("/information/{id}")
@@ -132,6 +143,6 @@ public class UserController {
 
     @GetMapping("/avatar")
     public ResponseEntity<byte[]> getAvatarUser(@RequestParam String id){
-        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(this.hadoopService.getAvatarUser(id));
+        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(this.hadoopService.getImage(id, "users"));
     }
 }

@@ -25,6 +25,7 @@ public class Blog {
     private String intro;
     private String content;
     private BlogState state;
+    
 
     public void setBlogState(BlogState state){
         this.state = state;
