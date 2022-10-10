@@ -104,4 +104,23 @@ public class HadoopServiceImpl implements HadoopService {
 
         return null;
     }
+
+    @Override
+    public boolean deleteImage(String id, String clusterName){
+        try{
+            Configuration config = new Configuration();
+            config.set(Consts.defaultFS, Consts.hdfsSite);
+            FileSystem fs = FileSystem.get(config);
+
+            Path hdfsPath = new Path(Consts.pathPrefix  + clusterName + "/" + id + ".jpg");
+            fs.delete(hdfsPath, true);
+            fs.close();
+            return true;
+        }
+        catch(Error | IOException e){
+            e.printStackTrace();
+        }
+
+        return false;
+    }
 }

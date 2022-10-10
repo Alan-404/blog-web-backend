@@ -1,9 +1,6 @@
 package com.blogalanai01.server.dtos.blog;
 
-import java.util.List;
-
 import com.blogalanai01.server.models.Blog;
-import com.blogalanai01.server.models.Comment;
 import com.blogalanai01.server.models.User;
 
 import lombok.AllArgsConstructor;
@@ -16,8 +13,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ShowBlogDTO {
-    private Blog blog = null;
-    private List<Comment> comments;
+public class ResponseGetBlogById {
+    private Blog blog;
     private User author;
 }

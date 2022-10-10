@@ -1,9 +1,8 @@
-package com.blogalanai01.server.models;
+package com.blogalanai01.server.dtos.blog;
 
 import java.util.List;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.blogalanai01.server.enums.BlogState;
 
@@ -12,20 +11,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "blog")
-public class Blog {
-    @Id
-    private String id;
+@AllArgsConstructor
+public class CreateBlogDTO {
     private List<String> categoryId;
     private String userId;
     private String title;
     private String intro;
     private String content;
+    private MultipartFile thumnail;
     private BlogState state;
     
 

@@ -117,3 +117,16 @@ Content-Type: application/json
 ###
 GET http://localhost:8080/category/all
 Content-Type: application/json
+
+###
+GET http://localhost:8080/blog/view?number=5&page=1
+Content-Type: application/json
+
+###
+GET http://localhost:8080/blog/show/63427c7c6ef6165f5e990771
+Content-Type: application/json
+
+###
+GET http://localhost:8080/blog/category/633fc7e665a3747f62c2ec85
+Content-Type: application/json
+
