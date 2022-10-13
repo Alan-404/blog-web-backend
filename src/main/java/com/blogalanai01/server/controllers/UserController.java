@@ -23,6 +23,7 @@ import com.blogalanai01.server.models.Account;
 import com.blogalanai01.server.models.User;
 import com.blogalanai01.server.services.account.AccountService;
 import com.blogalanai01.server.services.hadoop.HadoopService;
+import com.blogalanai01.server.services.media.MediaService;
 import com.blogalanai01.server.services.user.UserService;
 
 
@@ -34,26 +35,28 @@ public class UserController {
     private final AccountService accountService;
     private final Jwt jwt;
     private final HadoopService hadoopService;
+    private final MediaService mediaService;
     
     
-    public UserController(UserService userService, AccountService accountService, Jwt jwt, HadoopService hadoopService){
+    public UserController(UserService userService, AccountService accountService, Jwt jwt, HadoopService hadoopService, MediaService mediaService){
         this.userService = userService;
         this.accountService = accountService;
         this.jwt = jwt;
         this.hadoopService = hadoopService;
+        this.mediaService = mediaService;
     }
 
 
     @PostMapping("/add")
     public ResponseAddUserDTO addUser(@ModelAttribute RegisterDTO registerData){
         ResponseAddUserDTO response = new ResponseAddUserDTO(false, null, "Fail to Register User");
-        System.out.println(registerData.getAvatar());
         User user = this.userService.addUser(registerData);
         if (user == null){
             response.setMessage("Existed Email");
             return response;
         }
-        boolean addedImage = this.hadoopService.saveImage(registerData.getAvatar(), user.getId(), "users");
+        boolean addedImage = this.mediaService.saveMedia(registerData.getAvatar(), user.getId(), "avatars");
+        //boolean addedImage = this.hadoopService.saveImage(registerData.getAvatar(), user.getId(), "users");
         if(addedImage == false){
             response.setMessage("Interanl Error Server");
             return response;
