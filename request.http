@@ -28,7 +28,7 @@ POST http://localhost:8080/account/login
 Content-Type: application/json
 
 {
-    "email": "nguyentri.alan@gmail.com",
+    "email": "tri123@gmail.com",
     "password": "123"
 }
 
@@ -123,10 +123,30 @@ GET http://localhost:8080/blog/view?number=5&page=1
 Content-Type: application/json
 
 ###
-GET http://localhost:8080/blog/show/63427c7c6ef6165f5e990771
+GET http://localhost:8080/blog/show/6344014c73df2627d1ad4e29
 Content-Type: application/json
 
 ###
 GET http://localhost:8080/blog/category/633fc7e665a3747f62c2ec85
+Content-Type: application/json
+
+###
+POST http://localhost:8080/comment/add
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MzNmOTMzMTY2MzcyMTZhZTUzMzI5NGUiLCJpYXQiOjE2NjU0NDk0NDZ9.SGUULfqbveE7e0XDXf-haLWVyGyzysgePJWctztbMho
+
+{
+    "content": "126333",
+    "blogId": "6344014c73df2627d1ad4e29",
+    "reply": "000000000"
+}
+
+###
+GET http://localhost:8080/comment/reply/6344be652558376086f0406d
+Content-Type: application/json
+
+
+###
+GET http://localhost:8080/comment/all/6344014c73df2627d1ad4e29
 Content-Type: application/json
 

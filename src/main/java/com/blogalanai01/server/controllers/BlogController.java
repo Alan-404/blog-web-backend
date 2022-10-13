@@ -1,5 +1,6 @@
 package com.blogalanai01.server.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ import com.blogalanai01.server.dtos.blog.CreateBlogDTO;
 import com.blogalanai01.server.dtos.blog.ResponseViewBlogs;
 import com.blogalanai01.server.dtos.blog.ShowBlogDTO;
 import com.blogalanai01.server.dtos.category.HandleBlogDTO;
+import com.blogalanai01.server.dtos.comment.InfoCommentDTO;
 import com.blogalanai01.server.enums.BlogState;
 import com.blogalanai01.server.middleware.Jwt;
 import com.blogalanai01.server.models.Account;
@@ -115,19 +117,40 @@ public class BlogController {
     @GetMapping("/show/{id}")
     public ShowBlogDTO showBlog(@PathVariable("id") String id){
         ShowBlogDTO response = new ShowBlogDTO();
-        Blog blog = this.blogService.getBlogById(id);
-        if (blog == null){
+        try{
+            Blog blog = this.blogService.getBlogById(id);
+            if (blog == null){
+                return response;
+            }
+    
+            User user = this.userService.getUserById(blog.getUserId());
+    
+            response.setAuthor(user);
+    
+            List<Comment> comments = this.commentService.allCommentsByBlogId(id);
+    
+            response.setBlog(blog);
+
+            List<InfoCommentDTO> infoComment = new ArrayList<>();
+
+            for(Comment comment: comments){
+                InfoCommentDTO info = new InfoCommentDTO();
+                info.setBlogId(comment.getBlogId());
+                info.setContent(comment.getContent());
+                info.setId(comment.getId());
+                info.setReply(comment.getReply());
+                info.setUser(this.userService.getUserById(comment.getUserId()));
+                info.setNumReplies(this.commentService.getNumReplies(info.getId()));
+                infoComment.add(info);
+            }
+
+            response.setComments(infoComment);
+    
             return response;
         }
-
-        User user = this.userService.getUserById(blog.getUserId());
-
-        response.setAuthor(user);
-
-        List<Comment> comments = this.commentService.allCommentsByBlogId(id);
-
-        response.setBlog(blog);
-        response.setComments(comments);
+        catch(Error e){
+            e.printStackTrace();
+        }
 
         return response;
     }

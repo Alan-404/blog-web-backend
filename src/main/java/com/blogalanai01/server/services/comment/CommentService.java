@@ -7,4 +7,6 @@ import com.blogalanai01.server.models.Comment;
 public interface CommentService {
     public Comment addComment(Comment comment);
     public List<Comment> allCommentsByBlogId(String blogId);
+    public int getNumReplies(String commentId);
+    public List<Comment> getRepliesComment(String commentId);
 }

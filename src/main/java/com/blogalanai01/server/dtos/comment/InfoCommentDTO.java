@@ -1,22 +1,21 @@
-package com.blogalanai01.server.models;
+package com.blogalanai01.server.dtos.comment;
 
-import org.springframework.data.annotation.Id;
+import com.blogalanai01.server.models.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-public class Comment {
-    @Id
+@NoArgsConstructor
+@AllArgsConstructor
+public class InfoCommentDTO {
     private String id;
-    private String userId;
     private String blogId;
     private String content;
     private String reply;
+    private User user;
+    private int numReplies;
 }
